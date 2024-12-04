@@ -5,7 +5,14 @@ const cors = require("cors"); // For allowing cross-origin requests
 
 const app = express();
 app.use(bodyparser.json()); // Using JSON parsing instead of URL encoding for API consistency
-app.use(cors()); // Enables cross-origin requests, adjust as needed for production
+const corsOptions = {
+  origin: '*', // Allow only requests from this origin
+  methods: 'GET,POST, PUT, PATCH, DELETE', // Allow only these methods
+};
+
+// Use CORS middleware with specified options
+app.use(cors(corsOptions));
+
 
 const connection = mysql.createConnection({
   host: "sql12.freesqldatabase.com",
